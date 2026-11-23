@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Agent Toolkit Research — 100 Apps</title>
+<style>
+  :root {
+    --bg: #0b0f17;
+    --panel: #121826;
+    --panel-2: #1a2333;
+    --line: #243047;
+    --text: #e6edf6;
+    --muted: #8b9bb4;
+    --accent: #4f8cff;
+    --green: #2ecc71;
+    --amber: #f5a623;
+    --red: #ff5c5c;
+    --violet: #9b7bff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  header {
+    padding: 48px 24px 32px;
+    max-width: 1160px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--line);
+  }
+  .eyebrow { color: var(--accent); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; font-size: 12px; }
+  h1 { font-size: 34px; margin: 8px 0 8px; line-height: 1.15; }
+  .sub { color: var(--muted); max-width: 780px; font-size: 16px; }
+  .meta { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 20px; font-size: 13px; }
+  .pill { background: var(--panel-2); border: 1px solid var(--line); padding: 6px 12px; border-radius: 999px; color: var(--muted); }
+  main { max-width: 1160px; margin: 0 auto; padding: 0 24px 72px; }
+  section { padding: 40px 0; border-bottom: 1px solid var(--line); }
+  h2 { font-size: 22px; margin: 0 0 6px; }
+  .lead { color: var(--muted); margin: 0 0 24px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
+  .insight-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; margin: 20px 0 28px; }
+  .insight { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+  .insight h3 { margin: 0 0 8px; font-size: 15px; }
+  .insight p { margin: 0; color: var(--muted); font-size: 13px; }
+  .caveat { border-left: 3px solid var(--amber); padding-left: 12px; }
+  .card .k { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; }
+  .card .v { font-size: 26px; font-weight: 700; margin-top: 8px; }
+  .card .d { color: var(--muted); font-size: 13px; margin-top: 4px; }
+  .charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-top: 8px; }
+  .chart-box { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
+  .chart-box h3 { margin: 0 0 16px; font-size: 15px; color: var(--muted); font-weight: 600; }
+  .bar-list { display: grid; gap: 12px; }
+  .bar-label { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 5px; font-size: 13px; }
+  .bar-label span { color: var(--muted); }
+  .bar-track { height: 8px; overflow: hidden; background: var(--panel-2); border-radius: 999px; }
+  .bar-fill { height: 100%; background: var(--accent); border-radius: inherit; }
+  .controls { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+  input[type="search"], select {
+    background: var(--panel-2); border: 1px solid var(--line); color: var(--text);
+    padding: 10px 14px; border-radius: 10px; font-size: 14px; outline: none;
+  }
+  input[type="search"] { flex: 1; min-width: 220px; }
+  .table-wrap { overflow: auto; border: 1px solid var(--line); border-radius: 14px; max-height: 640px; }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; }
+  thead th {
+    position: sticky; top: 0; background: var(--panel-2); text-align: left;
+    padding: 12px 14px; font-size: 11px; text-transform: uppercase; letter-spacing: .05em;
+    color: var(--muted); border-bottom: 1px solid var(--line); z-index: 2; white-space: nowrap;
+  }
+  tbody td { padding: 11px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  tbody tr:hover { background: var(--panel); }
+  .badge { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 11px; font-weight: 600; white-space: nowrap; }
+  .b-self-serve { background: rgba(46,204,113,.15); color: var(--green); }
+  .b-free-tier { background: rgba(79,140,255,.15); color: var(--accent); }
+  .b-paid-plan, .b-admin-approval, .b-contact-sales, .b-partner { background: rgba(245,166,35,.15); color: var(--amber); }
+  .b-unknown { background: rgba(139,155,180,.15); color: var(--muted); }
+  .status { font-weight: 600; }
+  .s-ok { color: var(--green); }
+  .s-needs-human { color: var(--amber); }
+  .s-error { color: var(--red); }
+  .muted { color: var(--muted); }
+  .one-liner { color: var(--muted); max-width: 280px; }
+  .agent-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .step { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
+  .step .num { color: var(--violet); font-weight: 700; font-size: 13px; }
+  .step h3 { margin: 6px 0 6px; font-size: 15px; }
+  .step p { margin: 0; color: var(--muted); font-size: 13px; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
+  .panel h3 { margin: 0 0 10px; font-size: 15px; }
+  .panel ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 14px; }
+  .panel li { margin: 6px 0; }
+  .kpi-row { display: flex; gap: 24px; flex-wrap: wrap; margin: 8px 0 0; }
+  .kpi { }
+  .kpi .n { font-size: 30px; font-weight: 700; }
+  .kpi .l { color: var(--muted); font-size: 12px; }
+  footer { max-width: 1160px; margin: 0 auto; padding: 32px 24px 64px; color: var(--muted); font-size: 13px; }
+  code { background: var(--panel-2); padding: 2px 6px; border-radius: 6px; font-size: 12px; }
+  @media (max-width: 720px) { .two-col { grid-template-columns: 1fr; } h1 { font-size: 26px; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="eyebrow">AI Product Ops · Research Agent</div>
+  <h1>Can 100 apps be agent toolkits today?</h1>
+  <p class="sub">
+    An automated research agent profiles 100 apps across 10 categories — auth, access tier,
+    API surface, MCP presence and buildability — then surfaces patterns and flags claims for review.
+    Everything below is generated from <code>results.json</code> by the pipeline.
+  </p>
+  <div class="meta">
+    <span class="pill">Apps profiled: <strong>{{ results | length }}</strong></span>
+    <span class="pill">Model: NVIDIA Nemotron 3.5 Lightning 30B</span>
+    <span class="pill">Run: <code>python run.py</code></span>
+  </div>
+</header>
+
+<main>
+  <section id="patterns">
+    <h2>Headline patterns</h2>
+    <p class="lead">What the 100-app dataset says at a glance.</p>
+    <div class="cards">
+      {% if patterns and patterns.auth %}
+      <div class="card">
+        <div class="k">Dominant auth</div>
+        <div class="v">{{ patterns.auth[0][0] }}</div>
+        <div class="d">{{ patterns.auth[0][1] }} apps list this as a primary method</div>
+      </div>
+      {% endif %}
+      {% if patterns and patterns.access %}
+      <div class="card">
+        <div class="k">Most common access tier</div>
+        <div class="v">{{ patterns.access[0][0] }}</div>
+        <div class="d">{{ patterns.access[0][1] }} apps</div>
+      </div>
+      {% endif %}
+      {% if patterns and patterns.buildability %}
+      <div class="card">
+        <div class="k">Buildable today</div>
+        <div class="v">{{ patterns.buildability[0][0] }}</div>
+        <div class="d">{{ patterns.buildability[0][1] }} apps</div>
+      </div>
+      {% endif %}
+      {% if patterns and patterns.mcp %}
+      <div class="card">
+        <div class="k">Existing MCP</div>
+        <div class="v">{{ patterns.mcp[0][0] }}</div>
+        <div class="d">{{ patterns.mcp[0][1] }} apps</div>
+      </div>
+      {% endif %}
+    </div>
+
+    {% if patterns and patterns.summary %}
+    <div class="insight-grid">
+      <article class="insight">
+        <h3>Credentials are multi-modal</h3>
+        <p>API keys appear for {{ patterns.auth[0][1] }} apps; bearer tokens and OAuth2 also recur. Auth counts overlap because an app can support several methods.</p>
+      </article>
+      <article class="insight">
+        <h3>Access looks unusually open</h3>
+        <p>{{ patterns.summary.self_serve_or_free }} of {{ patterns.total }} are classified self-serve or free-tier; {{ patterns.summary.gated_access }} are gated. Treat this as a research hypothesis until the sample is hand-checked.</p>
+      </article>
+      <article class="insight">
+        <h3>MCP availability is unresolved</h3>
+        <p>{{ patterns.summary.mcp_confirmed }} apps have a confirmed official/community MCP, {{ patterns.summary.mcp_unknown }} remain unknown, and {{ patterns.summary.mcp_none }} are explicitly marked none. Unknown is not the same as absent.</p>
+      </article>
+      <article class="insight">
+        <h3>Buildability is mostly positive</h3>
+        <p>{{ patterns.buildability[0][1] }} apps are marked buildable today; see the matrix for partial cases and their reported blockers.</p>
+      </article>
+      {% if patterns.blocker_themes %}
+      <article class="insight">
+        <h3>Blocker theme (heuristic)</h3>
+        <p>The largest grouped theme is “{{ patterns.blocker_themes[0][0] }}” ({{ patterns.blocker_themes[0][1] }} of {{ patterns.summary.apps_with_blockers }} non-empty blocker notes). Grouping is keyword-based; exact blocker text is preserved per app.</p>
+      </article>
+      {% endif %}
+      {% if patterns.summary.max_exact_blocker_count <= 1 %}
+      <article class="insight">
+        <h3>No repeated exact blocker</h3>
+        <p>Blocker notes are app-specific, so the theme grouping is more useful than treating any single phrase as the dominant blocker.</p>
+      </article>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    {% if patterns and patterns.clusters %}
+    <div class="clusters">
+      <h3>Pattern segments (rule-based)</h3>
+      <p class="lead">Deterministic segmentation from <code>analysis.py</code> (access tier × buildability) — where to focus outreach vs. build now.</p>
+      <div class="cards">
+        {% for name, count in patterns.clusters %}
+        <div class="card">
+          <div class="k">{{ name }}</div>
+          <div class="v">{{ count }}</div>
+          <div class="d">apps</div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    {% if patterns and patterns.ml_clusters %}
+    <div class="clusters">
+      <h3>Exploratory ML clustering</h3>
+      <p class="lead caveat">K-means selected k={{ patterns.ml_clusters.k }} with silhouette {{ patterns.ml_clusters.silhouette }}. Separation is weak; cluster labels are not used for recommendations. The rule-based segments above are the actionable grouping.</p>
+    </div>
+    {% endif %}
+
+    <div class="charts">
+      <div class="chart-box">
+        <h3>Access tier distribution</h3>
+        <div class="bar-list">
+          {% for label, count in patterns.access %}
+          <div>
+            <div class="bar-label"><span>{{ label }}</span><strong>{{ count }}</strong></div>
+            <div class="bar-track"><div class="bar-fill" style="width: {{ (100 * count / patterns.access[0][1])|round|int }}%"></div></div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="chart-box">
+        <h3>Auth methods (apps listing each)</h3>
+        <div class="bar-list">
+          {% for label, count in patterns.auth %}
+          <div>
+            <div class="bar-label"><span>{{ label }}</span><strong>{{ count }}</strong></div>
+            <div class="bar-track"><div class="bar-fill" style="width: {{ (100 * count / patterns.auth[0][1])|round|int }}%"></div></div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="table">
+    <h2>Findings matrix</h2>
+    <p class="lead">Filter by name, category, access tier or verdict. Status flags rows for human review; hover to inspect the reason.</p>
+    <div class="controls">
+      <input type="search" id="search" placeholder="Search app, category, blocker..." />
+      <select id="accessFilter">
+        <option value="">All access tiers</option>
+        <option>self-serve</option>
+        <option>free-tier</option>
+        <option>paid-plan</option>
+        <option>admin-approval</option>
+        <option>contact-sales</option>
+        <option>partner</option>
+        <option>unknown</option>
+      </select>
+      <select id="verdictFilter">
+        <option value="">All verdicts</option>
+        <option>yes</option>
+        <option>with-work</option>
+        <option>no</option>
+        <option>unknown</option>
+      </select>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th><th>App</th><th>What it does</th><th>Auth</th><th>Access</th>
+            <th>API</th><th>MCP</th><th>Buildable</th><th>Blocker</th><th>Status</th><th>Evidence</th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="agent">
+    <h2>The agent</h2>
+    <p class="lead">Composio Instant (Exa) for retrieval, NVIDIA Nemotron 3.5 Lightning for extraction and verification, and deterministic code for the rest. Failed calls retry before a row is sent to manual review.</p>
+    <div class="agent-grid">
+      <div class="step"><div class="num">01 · RETRIEVE</div><h3>Find + read docs</h3><p><code>EXA_SEARCH</code> finds candidate docs and <code>EXA_GET_CONTENTS_ACTION</code> returns clean text. Falls back to DuckDuckGo + trafilatura on failure. Cached in SQLite.</p></div>
+      <div class="step"><div class="num">02 · EXTRACT</div><h3>Structured + gap-fill</h3><p>Nemotron fills a strict JSON contract (Pydantic) with a retry on failure. Auth aliases are normalized; unresolved failures enter the SQLite manual-review queue. Unknown or low-confidence fields trigger a targeted re-query.</p></div>
+      <div class="step"><div class="num">03 · VERIFY</div><h3>Self-critique</h3><p>A second pass asks whether the cited evidence actually supports each claim and flags disputed rows as <em>needs-human</em>.</p></div>
+      <div class="step"><div class="num">04 · AGGREGATE</div><h3>Patterns + clusters</h3><p>pandas computes deterministic counts and segments apps into easy-win / with-work / needs-outreach / blocked — never by the LLM.</p></div>
+    </div>
+    <div class="two-col" style="margin-top:20px">
+      <div class="panel">
+        <h3>Where a human was needed</h3>
+        <ul>
+          <li>Resolving ambiguous access tiers (free tier + gated endpoints).</li>
+          <li>Apps with no public docs or defunct sites.</li>
+          <li>Confirming whether an MCP actually exists.</li>
+          <li>The hand-checked accuracy sample and rubric fixes.</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>Why this stays cheap and verifiable</h3>
+        <ul>
+          <li>Retrieval runs on Composio's free Instant credit; extraction runs through NVIDIA's API.</li>
+          <li>The <strong>verification loop</strong> carries accuracy and flags disputed rows.</li>
+          <li>DuckDuckGo + trafilatura is an automatic fallback if Composio fails.</li>
+          <li>SQLite stores cached docs, per-app results and a manual-review queue; JSON is updated after each app.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="verification">
+    <h2>Verification &amp; accuracy</h2>
+    <p class="lead">A hand-checked sample compares the saved first-pass answer and final reviewed answer with a value checked against the linked official source.</p>
+    {% if verification %}
+    <div class="kpi-row">
+      <div class="kpi"><div class="n">{{ verification.sample_size }}</div><div class="l">apps hand-checked</div></div>
+      <div class="kpi"><div class="n">{{ verification.pass1_accuracy }}%</div><div class="l">field accuracy, pass 1</div></div>
+      <div class="kpi"><div class="n">{{ verification.pass2_accuracy }}%</div><div class="l">field accuracy, pass 2</div></div>
+      <div class="kpi"><div class="n">{{ verification.delta }} pp</div><div class="l">change after review</div></div>
+    </div>
+    <p class="lead">{{ verification.fields_checked }} fields across {{ verification.sample_size }} apps; {{ verification.improved_fields }} improved and {{ verification.regressed_fields }} regressed. Pass 2 includes documented human corrections; this sample is not a population-wide accuracy estimate.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>App</th><th>Field</th><th>Pass 1</th><th>Final pass</th><th>Hand-checked value</th><th>Result</th><th>Evidence</th></tr></thead>
+        <tbody>
+          {% for item in verification.checks %}
+          <tr>
+            <td>{{ item.app }}</td>
+            <td>{{ item.field }}</td>
+            <td>{{ item.pass1_value }}</td>
+            <td>{{ item.pass2_value }}</td>
+            <td>{{ item.correct_value }}</td>
+            <td>Pass 1: {{ "hit" if item.pass1_ok else "miss" }}<br>Final: {{ "hit" if item.pass2_ok else "miss" }}</td>
+            <td><a href="{{ item.source_url }}" target="_blank" rel="noopener">checked source</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="two-col" style="margin-top:20px">
+      <div class="panel">
+        <h3>First-pass misses ({{ verification.first_pass_misses|length }})</h3>
+        <ul>{% for item in verification.first_pass_misses %}<li>{{ item.app }} · {{ item.field }}: “{{ item.pass1_value }}” -&gt; reviewed “{{ item.correct_value }}”</li>{% endfor %}</ul>
+      </div>
+      <div class="panel">
+        <h3>Final misses ({{ verification.misses|length }})</h3>
+        <ul>{% for item in verification.misses %}<li>{{ item.app }} · {{ item.field }}: final answer “{{ item.pass2_value }}”; verified value “{{ item.correct_value }}”.</li>{% else %}<li>None in this checked sample.</li>{% endfor %}</ul>
+      </div>
+    </div>
+    {% else %}
+    <div class="panel">
+      <h3>Verification report pending</h3>
+      <p class="muted">Hand-check 15–20 apps, record the first and final answers, the verified value, and an official source URL in <code>verification_sample.csv</code>. The page will calculate accuracy and show hits and misses. Do not report a gain unless the checked sample supports it.</p>
+    </div>
+    {% endif %}
+  </section>
+</main>
+
+<footer>
+  Generated by the research pipeline · model NVIDIA Nemotron 3.5 Lightning · data from <code>results.json</code> · patterns computed from <code>patterns.json</code>.
+</footer>
+
+<script>
+const DATA = {{ results | tojson }};
+
+function el(tag, cls, text) {
+  const n = document.createElement(tag);
+  if (cls) n.className = cls;
+  if (text != null) n.textContent = text;
+  return n;
+}
+
+function badgeFor(value) {
+  const cls = "badge b-" + String(value || "unknown").replace(/\s+/g, "-");
+  return el("span", cls, value || "unknown");
+}
+
+function statusNode(status, detail) {
+  const map = { ok: "s-ok", "needs-human": "s-needs-human", error: "s-error" };
+  const badge = el("span", "status " + (map[status] || ""), status || "unknown");
+  if (detail) badge.title = detail;
+  return badge;
+}
+
+function renderRows() {
+  const q = document.getElementById("search").value.toLowerCase();
+  const access = document.getElementById("accessFilter").value;
+  const verdict = document.getElementById("verdictFilter").value;
+  const tbody = document.getElementById("rows");
+  tbody.innerHTML = "";
+
+  DATA.forEach(function (rec) {
+    const r = rec.research || {};
+    const hay = [r.name, r.category, r.one_liner, r.blocker, r.auth_notes].join(" ").toLowerCase();
+    if (q && hay.indexOf(q) === -1) return;
+    if (access && r.access !== access) return;
+    if (verdict && r.buildability !== verdict) return;
+
+    const tr = document.createElement("tr");
+    tr.appendChild(el("td", "muted", rec.id));
+    tr.appendChild(el("td", null, r.name || "—"));
+
+    const ol = el("td", "one-liner");
+    ol.textContent = r.one_liner || "—";
+    tr.appendChild(ol);
+
+    const authTd = document.createElement("td");
+    (r.auth_methods || []).forEach(function (m) {
+      authTd.appendChild(badgeFor(m));
+      authTd.appendChild(document.createTextNode(" "));
+    });
+    if (!(r.auth_methods || []).length) authTd.textContent = "—";
+    tr.appendChild(authTd);
+
+    const accessTd = document.createElement("td");
+    accessTd.appendChild(badgeFor(r.access));
+    tr.appendChild(accessTd);
+
+    tr.appendChild(el("td", "muted", [r.api_type, r.api_breadth].filter(Boolean).join(" · ") || "—"));
+    tr.appendChild(el("td", "muted", r.mcp || "—"));
+    tr.appendChild(el("td", null, r.buildability || "—"));
+
+    const blk = el("td", "one-liner");
+    blk.textContent = r.blocker || "—";
+    tr.appendChild(blk);
+
+    const st = document.createElement("td");
+    const issues = rec.verification && rec.verification.issues;
+    st.appendChild(statusNode(rec.status, rec.error || (issues || []).join("; ")));
+    tr.appendChild(st);
+
+    const ev = document.createElement("td");
+    const evidenceUrls = r.evidence_urls || [];
+    if (evidenceUrls.length) {
+      evidenceUrls.forEach(function (url, index) {
+        const a = el("a", null, "source " + (index + 1));
+        a.href = url;
+        a.title = url;
+        a.target = "_blank";
+        a.rel = "noopener";
+        ev.appendChild(a);
+        if (index < evidenceUrls.length - 1) ev.appendChild(document.createTextNode(" · "));
+      });
+    } else {
+      ev.textContent = "—";
+    }
+    tr.appendChild(ev);
+
+    tbody.appendChild(tr);
+  });
+}
+
+(function init() {
+  renderRows();
+  ["search", "accessFilter", "verdictFilter"].forEach(function (id) {
+    document.getElementById(id).addEventListener("input", renderRows);
+    document.getElementById(id).addEventListener("change", renderRows);
+  });
+})();
+</script>
+</body>
+</html>

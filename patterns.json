@@ -1,0 +1,571 @@
+{
+  "total": 100,
+  "auth": [
+    [
+      "API key",
+      72
+    ],
+    [
+      "Bearer token",
+      51
+    ],
+    [
+      "OAuth2",
+      47
+    ],
+    [
+      "Personal access token",
+      13
+    ],
+    [
+      "Basic",
+      6
+    ],
+    [
+      "Other",
+      2
+    ]
+  ],
+  "access": [
+    [
+      "self-serve",
+      85
+    ],
+    [
+      "free-tier",
+      11
+    ],
+    [
+      "contact-sales",
+      2
+    ],
+    [
+      "paid-plan",
+      1
+    ],
+    [
+      "admin-approval",
+      1
+    ]
+  ],
+  "buildability": [
+    [
+      "yes",
+      78
+    ],
+    [
+      "with-work",
+      21
+    ],
+    [
+      "no",
+      1
+    ]
+  ],
+  "mcp": [
+    [
+      "unknown",
+      53
+    ],
+    [
+      "official",
+      34
+    ],
+    [
+      "none",
+      12
+    ],
+    [
+      "community",
+      1
+    ]
+  ],
+  "categories": [
+    [
+      "CRM and Sales",
+      10
+    ],
+    [
+      "Support and Helpdesk",
+      10
+    ],
+    [
+      "Communications and Messaging",
+      10
+    ],
+    [
+      "Marketing, Ads, Email and Social",
+      10
+    ],
+    [
+      "Ecommerce",
+      10
+    ],
+    [
+      "Data, SEO and Scraping",
+      10
+    ],
+    [
+      "Developer, Infra and Data platforms",
+      10
+    ],
+    [
+      "Productivity and Project Management",
+      10
+    ],
+    [
+      "Finance and Fintech",
+      10
+    ],
+    [
+      "AI, Research and Media-native",
+      10
+    ]
+  ],
+  "statuses": [
+    [
+      "ok",
+      70
+    ],
+    [
+      "needs-human",
+      30
+    ]
+  ],
+  "top_blockers": [
+    [
+      "OAuth backend setup required for multi-account apps",
+      1
+    ],
+    [
+      "MCP server requires personal connection for full ticket access; API v1/v3 key separation and permission configuration needed",
+      1
+    ],
+    [
+      "OAuth PKCE and fine-grained permission scoping required for agent toolkits",
+      1
+    ],
+    [
+      "OAuth2 scope approval requirements and rate limiting restrictions",
+      1
+    ],
+    [
+      "requires Meta developer account setup and phone number verification",
+      1
+    ],
+    [
+      "requires LinkedIn Advertising API approval and OAuth credential setup",
+      1
+    ],
+    [
+      "Standard access requires manual video demo review with unpublished criteria",
+      1
+    ],
+    [
+      "MCP server not officially provided for Commerce Cloud APIs",
+      1
+    ],
+    [
+      "OAuth2 flow requires manual developer steps and redirect URI configuration",
+      1
+    ],
+    [
+      "OAuth architecture review required for restricted roles",
+      1
+    ]
+  ],
+  "blocker_themes": [
+    [
+      "Authentication or setup",
+      8
+    ],
+    [
+      "Approval or partner gates",
+      5
+    ],
+    [
+      "Permissions, security or rate limits",
+      4
+    ],
+    [
+      "API/MCP surface gaps",
+      4
+    ],
+    [
+      "Other / unclear",
+      1
+    ]
+  ],
+  "by_category_access": {
+    "AI, Research and Media-native": {
+      "self-serve": 8,
+      "admin-approval": 1,
+      "free-tier": 1
+    },
+    "CRM and Sales": {
+      "self-serve": 10
+    },
+    "Communications and Messaging": {
+      "self-serve": 9,
+      "free-tier": 1
+    },
+    "Data, SEO and Scraping": {
+      "self-serve": 8,
+      "paid-plan": 1,
+      "free-tier": 1
+    },
+    "Developer, Infra and Data platforms": {
+      "self-serve": 10
+    },
+    "Ecommerce": {
+      "self-serve": 6,
+      "free-tier": 4
+    },
+    "Finance and Fintech": {
+      "self-serve": 8,
+      "free-tier": 1,
+      "contact-sales": 1
+    },
+    "Marketing, Ads, Email and Social": {
+      "self-serve": 7,
+      "free-tier": 2,
+      "contact-sales": 1
+    },
+    "Productivity and Project Management": {
+      "self-serve": 9,
+      "free-tier": 1
+    },
+    "Support and Helpdesk": {
+      "self-serve": 10
+    }
+  },
+  "clusters": [
+    [
+      "easy-win",
+      77
+    ],
+    [
+      "easy-access",
+      19
+    ],
+    [
+      "needs-outreach",
+      3
+    ],
+    [
+      "with-work",
+      1
+    ]
+  ],
+  "cluster_members": {
+    "easy-win": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      27,
+      29,
+      30,
+      31,
+      32,
+      34,
+      35,
+      36,
+      37,
+      39,
+      40,
+      41,
+      42,
+      43,
+      45,
+      46,
+      48,
+      52,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      63,
+      64,
+      65,
+      66,
+      67,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      88,
+      89,
+      92,
+      93,
+      94,
+      95,
+      97,
+      98,
+      99
+    ],
+    "easy-access": [
+      2,
+      16,
+      17,
+      26,
+      28,
+      38,
+      44,
+      47,
+      49,
+      50,
+      51,
+      62,
+      68,
+      78,
+      85,
+      86,
+      87,
+      96,
+      100
+    ],
+    "needs-outreach": [
+      33,
+      90,
+      91
+    ],
+    "with-work": [
+      53
+    ]
+  },
+  "ml_clusters": {
+    "method": "k-means++ on one-hot capability features",
+    "seed": 42,
+    "k": 6,
+    "silhouette": 0.2,
+    "inertia": 153.317,
+    "features": [
+      "access=self-serve",
+      "access=free-tier",
+      "access=paid-plan",
+      "access=admin-approval",
+      "access=contact-sales",
+      "access=partner",
+      "access=unknown",
+      "build=yes",
+      "build=with-work",
+      "build=no",
+      "build=unknown",
+      "api=REST",
+      "api=GraphQL",
+      "api=both",
+      "api=none",
+      "api=unknown",
+      "breadth=small",
+      "breadth=medium",
+      "breadth=broad",
+      "breadth=unknown",
+      "mcp=none",
+      "mcp=official",
+      "mcp=community",
+      "mcp=unknown",
+      "auth=OAuth2",
+      "auth=API key",
+      "auth=Basic",
+      "auth=Bearer token",
+      "auth=Personal access token",
+      "auth=JWT",
+      "auth=Signed request",
+      "auth=Other",
+      "auth=Unknown",
+      "confidence"
+    ],
+    "clusters": [
+      {
+        "id": 1,
+        "size": 28,
+        "label": "self-serve · yes · REST",
+        "members": [
+          3,
+          5,
+          7,
+          8,
+          11,
+          12,
+          21,
+          22,
+          27,
+          30,
+          34,
+          37,
+          40,
+          42,
+          45,
+          46,
+          52,
+          57,
+          63,
+          64,
+          67,
+          69,
+          74,
+          75,
+          76,
+          81,
+          82,
+          88
+        ]
+      },
+      {
+        "id": 3,
+        "size": 24,
+        "label": "self-serve · yes · REST · official MCP",
+        "members": [
+          1,
+          10,
+          15,
+          24,
+          31,
+          32,
+          35,
+          36,
+          39,
+          41,
+          43,
+          53,
+          55,
+          56,
+          58,
+          61,
+          65,
+          70,
+          72,
+          77,
+          79,
+          83,
+          84,
+          95
+        ]
+      },
+      {
+        "id": 2,
+        "size": 18,
+        "label": "self-serve · yes · REST",
+        "members": [
+          4,
+          6,
+          9,
+          13,
+          18,
+          19,
+          20,
+          23,
+          29,
+          47,
+          62,
+          68,
+          73,
+          80,
+          86,
+          89,
+          92,
+          100
+        ]
+      },
+      {
+        "id": 0,
+        "size": 14,
+        "label": "self-serve · yes · REST · official MCP",
+        "members": [
+          14,
+          16,
+          25,
+          54,
+          59,
+          60,
+          66,
+          71,
+          93,
+          94,
+          96,
+          97,
+          98,
+          99
+        ]
+      },
+      {
+        "id": 5,
+        "size": 9,
+        "label": "self-serve · with-work · REST",
+        "members": [
+          2,
+          26,
+          28,
+          44,
+          49,
+          50,
+          51,
+          85,
+          87
+        ]
+      },
+      {
+        "id": 4,
+        "size": 7,
+        "label": "free-tier · with-work · REST",
+        "members": [
+          17,
+          33,
+          38,
+          48,
+          78,
+          90,
+          91
+        ]
+      }
+    ]
+  },
+  "summary": {
+    "avg_confidence": 0.923,
+    "ok_rate": 0.7,
+    "mcp_coverage": 0.35,
+    "self_serve_or_free": 96,
+    "gated_access": 4,
+    "mcp_confirmed": 35,
+    "mcp_unknown": 53,
+    "mcp_none": 12,
+    "apps_with_blockers": 22,
+    "easy_wins": 77,
+    "needs_outreach": 3,
+    "max_exact_blocker_count": 1
+  }
+}

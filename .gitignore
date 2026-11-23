@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+*.tmp
+.env
+*.log
+*.err
+store/*.sqlite
+store/*.db
+docs/.nojekyll
+.DS_Store
+.idea/
